@@ -1,0 +1,27 @@
+<form>
+<div class="form-group" >
+  <input 
+        type="text" 
+        class="form-control" 
+        id="inputSuccess1" 
+        placeholder="Nome"
+        aria-describedby="helpBlock2"
+        [(ngModel)]="nomePessoa"
+        name="input-nome"
+        />
+</div>
+
+<div class="form-group" >
+  <input 
+        type="text" 
+        class="form-control" 
+        id="inputSuccess2" 
+        placeholder="Texto"
+        [(ngModel)]="texto"
+        name="input-texto"
+        />
+</div>
+<button (click)="submeterPost($event);" 
+    class="btn btn-primary">Adicionar
+  </button>
+</form>

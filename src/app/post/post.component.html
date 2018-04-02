@@ -1,0 +1,9 @@
+<br>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{posts[index].nomePessoa}}</h5>
+    <p class="card-text">{{posts[index].texto}}</p>
+    <span>{{posts[index].qtdLikes}} </span><a href="#" class="card-link" (click)="Likou($event);">Likes</a>
+    <button class= 'btn btn-default' style="float: right;" (click)="ClickRemover(posts[index].id)"><span>x</span></button>
+  </div>
+</div> 

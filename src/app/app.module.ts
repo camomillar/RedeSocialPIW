@@ -1,20 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'
 
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PostsComponent } from './posts/posts.component';
-
+import { PostComponent } from './post/post.component';
+import { LinhaDoTempoComponent } from './linha-do-tempo/linha-do-tempo.component';
+import { PostinputComponent } from './postinput/postinput.component';
+import { routing } from './app.routing'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PostsComponent
+    PostComponent,
+    LinhaDoTempoComponent,
+    PostinputComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, 
+    FormsModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
