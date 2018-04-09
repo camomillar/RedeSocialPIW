@@ -1,0 +1,15 @@
+.like{
+    cursor: pointer;
+}
+
+.botaoeditar{
+    background-color: rgb(218, 218, 218) !important;
+}
+
+.botaodelete{
+    background-color: rgb(230, 119, 115) !important;
+}
+
+.botaodelete{
+    color: beige !important;
+}

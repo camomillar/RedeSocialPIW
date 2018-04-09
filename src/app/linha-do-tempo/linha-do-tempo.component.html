@@ -2,6 +2,7 @@
           [index]="index"
           (recebeuLike)="capturarLike($event)"
           (removePost)="deletarPosts($event)"
+          (editPost)="editPost($event)"
           *ngFor="let index=index; let post of posts;"
           >
 </app-post>

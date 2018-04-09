@@ -1,37 +1,60 @@
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http'
+import { Observable } from 'rxjs'
 import { Post } from './post.model'
+import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/map'
 
 @Injectable()
 export class PostService {
+
+    constructor(private http:Http){
+
+    }
     
-    posts = [
-        new Post(1, "Milla","Eu gosto da série Fargo, é muito legal!",10),
-        new Post(2, "Kimberly", "Eu não conheço essa série...",5),
-        new Post(3, "Adonai", "Essa série é muito boa!",16)
-    ]
+    url:string = 'http://rest.learncode.academy/api/camilla/posts'
+
+    posts:Post[] = [];
 
     getPosts(){
-        return this.posts
+        console.log("get")
+        return this.http.get(this.url)
+            .map((response:Response) => {
+                    this.posts = []
+                    for(let p of response.json()){
+                        this.posts.push(new Post(p.id,p.nomePessoa, 
+                            p.texto, p.qtdLikes))
+                    }
+                    return this.posts
+                }
+            )
+            .catch((error:Response) => Observable.throw(error))
     }
 
     removePost(id:number){
-        let indice = null;
-        for (let i in this.posts){
-            if (id == this.posts[i].id){
-                indice = i;
-            }
-        }
-        this.posts.splice(indice,1)
+       return this.http.delete(this.url + "/" + id)
+            .map((response:Response) => response.text)
+            .catch((error:Response) => Observable.throw(error))
     }
 
-    addPost(post: Post){
-        this.posts.push(post)
-        console.log(this.posts)
+    addPost(post){
+        console.log("adiciona")
+        return this.http.post(this.url, post)
+            .map((response:Response) =>  response.json())
+            .catch((error:Response) => Observable.throw(error))
+    }
+
+    editPost(post:Post){
+        return this.http.put(this.url + "/" + post.id, post)
+            .map((response:Response) => response.json())
+            .catch((error:Response) => Observable.throw(error))
     }
 
     like(post: Post){
-        let indice = this.posts.indexOf(post)
-        this.posts[indice].qtdLikes +=1
+        post.qtdLikes += 1;
+        return this.http.put(this.url + "/" + post.id, post)
+            .map((response:Response) => response.json())
+            .catch((error:Response) => Observable.throw(error))
     }
 
 }

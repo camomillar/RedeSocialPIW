@@ -12,7 +12,11 @@ export class PostComponent implements OnInit {
   @Input() index: number;
   @Output() recebeuLike = new EventEmitter<any>();
   @Output() removePost = new EventEmitter();
-   
+  @Output() editPost = new EventEmitter();
+  
+  edicao:boolean = false;
+  textoEdit:string = "";
+
   constructor() { }
 
   Likou(){
@@ -21,10 +25,27 @@ export class PostComponent implements OnInit {
 
   ClickRemover(id:number){
     this.removePost.emit(id)
-    
+  }
+
+  edit(post: Post){
+    post.texto = this.textoEdit
+    this.edicao = false;
+    this.textoEdit = "";
+    this.editPost.emit(post)
+  }
+
+  cancelar(){
+    this.edicao = false;
+    this.textoEdit = "";
+  }
+
+  ativarEdicao(){
+    this.edicao = true;
+    this.textoEdit = this.posts[this.index].texto
   }
 
   ngOnInit() {
+
   }
 
 }

@@ -20,10 +20,19 @@ export class PostinputComponent implements OnInit {
   submeterPost(event){
     event.preventDefault() 
     if(this.nomePessoa != '' && this.texto != ''){
-      this.id = this.pservice.getPosts().length +1;
-      let p = new Post(this.id, this.nomePessoa, this.texto, this.qtdLikes)
-      console.log(p)
-      this.pservice.addPost(p)
+      let p =  {
+        nomePessoa: this.nomePessoa, 
+        texto: this.texto, 
+        qtdLikes: this.qtdLikes
+      }
+      this.pservice.addPost(p).subscribe(
+        (data) => {
+          console.log(data)
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
     }
   }
   ngOnInit() {

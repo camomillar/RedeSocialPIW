@@ -2,8 +2,14 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">{{posts[index].nomePessoa}}</h5>
-    <p class="card-text">{{posts[index].texto}}</p>
-    <span>{{posts[index].qtdLikes}} </span><a href="#" class="card-link" (click)="Likou($event);">Likes</a>
-    <button class= 'btn btn-default' style="float: right;" (click)="ClickRemover(posts[index].id)"><span>x</span></button>
+    <p class="card-text" *ngIf="!edicao">{{posts[index].texto}}</p>
+    <div *ngIf="edicao">
+      <textarea name="texto-input" [(ngModel)]="this.textoEdit"></textarea><br>
+      <button class="btn btn-primary" (click)="edit(posts[index])">Concluir</button>
+      <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+    </div>
+    <button class= 'btn btn-default botaoeditar' *ngIf="!edicao" style="float: right;" (click)="ativarEdicao()"><span>Editar</span></button>
+    <span>{{posts[index].qtdLikes}} </span><a class="card-link like" (click)="Likou($event);">Likes</a>
+    <button class= 'btn btn-default botaodelete' style="float: right;" (click)="ClickRemover(posts[index].id)"><span>x</span></button>
   </div>
 </div> 

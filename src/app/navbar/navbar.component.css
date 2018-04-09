@@ -1,0 +1,15 @@
+.navbar{
+    background-color: rgb(242, 242, 242) !important;
+}
+
+ul li a{
+    color: rgb(55, 55, 55) !important;
+}
+
+a{
+    color: rgb(55, 55, 55) !important;
+}
+
+.linkativado > .nav-link{
+    color: rgb(79, 149, 206) !important;
+}
